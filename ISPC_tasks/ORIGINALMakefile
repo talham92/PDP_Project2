@@ -1,0 +1,15 @@
+all: project02_tasks
+	
+project02_tasks:  sqrtFunction_ispc_tasks.o project02main_ispc_tasks.o
+	clang++ -m64 -I -O3 -Wall -o project02_tasks project02main_ispc_tasks.o sqrtFunction_ispc_tasks.o
+	
+sqrtFunction_ispc_tasks.o: sqrtFunction_ispc_tasks.ispc	
+	ispc -O2 --arch=x86-64 --target=sse2 sqrtFunction_ispc_tasks.ispc -o sqrtFunction_ispc_tasks.o -h sqrtFunction_ispc_tasks.h	
+	
+project02main_ispc_tasks.o: project02main_ispc_tasks.cpp
+	clang++ -m64 -I -O3 -Wall -c -o project02main_ispc_tasks.o project02main_ispc_tasks.cpp  
+	
+  
+	
+clean:
+	rm -rf *o project02_tasks

@@ -1,0 +1,22 @@
+
+//////Makesure your Project folder contain the main .cpp file and the .ispc file.
+//////DO NOT change the file names since the compile code below are unique.
+//////Open Terminal in your project folder.
+
+///-----------------COMPILE OPTION 1-------------------////////
+//Copy and paste the compiling lines below into the Terminal.
+make
+./project02
+/// press ENTER
+
+///-----------------COMPILE OPTION 2-------------------//
+//////Copy and paste the compiling lines below into the Terminal.
+
+ispc -O2 --arch=x86-64 --target=sse2 sqrtFunction_ispc.ispc -o sqrtFunction_ispc.o -h sqrtFunction_ispc.h  
+clang++ -m64 -I -O3 -Wall -c -o project02main_ispc.o project02main_ispc.cpp  
+clang++ -m64 -I -O3 -Wall -o project02 project02main_ispc.o sqrtFunction_ispc.o
+/// press ENTER
+
+//////Then run with the following line.
+./project02
+
